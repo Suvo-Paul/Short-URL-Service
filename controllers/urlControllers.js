@@ -78,4 +78,4 @@ const analytics = async (req, res) => {
     }
 }
 
-module.exports = { generateShortUrl, redirectLink,analytics }
+module.exports = { generateShortUrl, redirectLink, analytics }
