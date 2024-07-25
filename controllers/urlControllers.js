@@ -20,12 +20,11 @@ const generateShortUrl = async (req, res) => {
             redirectURL: body.url,
             visitHistory: []
         })
-
-        return res.status(201).send({
-            success: true,
-            message: "Short url created",
-            data: response
+        
+        return res.render('home', {
+            data: shortId
         })
+
     } catch (error) {
         return res.status(500).send({
             success: false,
@@ -78,4 +77,19 @@ const analytics = async (req, res) => {
     }
 }
 
-module.exports = { generateShortUrl, redirectLink, analytics }
+const allURL = async (req, res) => {
+    try {
+        const allurl = await urlCollection.find({})
+
+        return res.render("home", {
+            urls: allurl
+        })
+    } catch (error) {
+        return res.status(500).send({
+            success: false,
+            message: "Internal serevr error"
+        })
+    }
+}
+
+module.exports = { generateShortUrl, redirectLink, analytics, allURL }
