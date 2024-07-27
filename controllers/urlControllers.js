@@ -18,9 +18,10 @@ const generateShortUrl = async (req, res) => {
         const response = await urlCollection.create({
             shortId: shortId,
             redirectURL: body.url,
-            visitHistory: []
+            visitHistory: [],
+            createdBy: req.user._id
         })
-        
+
         return res.render('home', {
             data: shortId
         })
